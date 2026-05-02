@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priscilla Oyewole — Video Editor & Content Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#F9F6F1;--ink:#18160F;--ink-mid:#4A4740;--ink-soft:#8A8780;--accent:#B8481E;--border:rgba(24,22,15,0.1);--border-soft:rgba(24,22,15,0.06)}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(249,246,241,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-soft)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;letter-spacing:0.04em;text-decoration:none;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--ink-soft);font-size:0.72rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:inline-block;padding:0.6rem 1.5rem;background:var(--ink);color:var(--cream);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s}
+.nav-cta:hover{background:var(--accent)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:10rem 4rem 5rem;position:relative;border-bottom:1px solid var(--border)}
+.hero-tag{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.75rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.1s}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,7rem);line-height:0.95;letter-spacing:-0.02em;font-weight:300;max-width:850px;margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.25s}
+.hero-h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--ink-mid);max-width:460px;font-weight:300;line-height:1.8;margin-bottom:3rem;opacity:0;animation:fadeUp 0.7s ease forwards 0.4s}
+.hero-btns{display:flex;gap:1rem;opacity:0;animation:fadeUp 0.7s ease forwards 0.55s}
+.btn-fill{display:inline-block;padding:0.9rem 2.25rem;background:var(--ink);color:var(--cream);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--ink);transition:background 0.2s}
+.btn-fill:hover{background:var(--accent)}
+.btn-line{display:inline-block;padding:0.9rem 2.25rem;background:transparent;color:var(--ink);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--border);transition:border-color 0.2s}
+.btn-line:hover{border-color:var(--ink)}
+.hero-scroll{position:absolute;bottom:3rem;right:4rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft)}
+.hero-scroll::after{content:'';display:block;width:1px;height:56px;background:var(--ink-soft)}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.stat{padding:2.5rem 3rem;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--ink);line-height:1;margin-bottom:0.4rem}
+.stat-num span{color:var(--accent)}
+.stat-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)}
+.cat-section{padding:5rem 4rem;border-bottom:1px solid var(--border)}
+.section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3rem}
+.section-tag{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:block;margin-bottom:0.6rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;letter-spacing:-0.02em;line-height:1.1}
+
+/* VIDEO CARDS */
+.vcard{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.vcard-thumb{position:relative;width:100%;overflow:hidden;background:#1A1916}
+.vcard-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.vcard:hover .vcard-thumb img{transform:scale(1.05)}
+.ratio-16-9{aspect-ratio:16/9}
+.ratio-9-16{aspect-ratio:9/16}
+.ratio-wide{aspect-ratio:21/9}
+.play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(24,22,15,0.2);transition:background 0.3s}
+.vcard:hover .play-btn{background:rgba(24,22,15,0.45)}
+.play-circle{width:56px;height:56px;border-radius:50%;background:rgba(249,246,241,0.92);display:flex;align-items:center;justify-content:center;transition:transform 0.3s}
+.vcard:hover .play-circle{transform:scale(1.1)}
+.play-circle svg{width:18px;height:18px;margin-left:3px}
+.vcard-body{padding:0.85rem 0 0.25rem}
+.vcard-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.3rem;display:block}
+.vcard-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--ink);line-height:1.3}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.grid-1{display:grid;grid-template-columns:1fr}
+
+#about{padding:5rem 4rem;border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.about-copy p{font-size:1.05rem;color:var(--ink-mid);line-height:1.85;font-weight:300;margin-bottom:1.25rem}
+.tools-list{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border)}
+.tool-row{padding:1rem 0;border-bottom:1px solid var(--border);font-size:0.875rem}
+.tool-row:nth-child(odd){padding-right:2rem;border-right:1px solid var(--border)}
+.tool-row:nth-child(even){padding-left:2rem}
+.tool-cat{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:block;margin-bottom:0.3rem}
+.tool-val{color:var(--ink-mid);font-weight:300}
+#contact{padding:6rem 4rem 5rem;border-bottom:1px solid var(--border)}
+.contact-wrap{max-width:660px}
+.contact-big{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:300;line-height:1.0;letter-spacing:-0.03em;margin-bottom:2.5rem}
+.contact-big a{color:var(--accent);text-decoration:none;border-bottom:2px solid currentColor;transition:opacity 0.2s}
+.contact-big a:hover{opacity:0.65}
+.contact-note{font-size:0.95rem;color:var(--ink-mid);font-weight:300;line-height:1.75;margin-bottom:2.5rem}
+.socials{display:flex;gap:1.75rem;flex-wrap:wrap}
+.socials a{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;font-weight:400;border-bottom:1px solid var(--border);padding-bottom:0.2rem;transition:color 0.2s,border-color 0.2s}
+.socials a:hover{color:var(--accent);border-color:var(--accent)}
+footer{padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;letter-spacing:0.06em;color:var(--ink-soft)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .hero{padding:8rem 1.5rem 4rem}
+  .stats-bar{grid-template-columns:1fr 1fr}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.75rem 1.5rem}
+  .cat-section{padding:3.5rem 1.5rem}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  #about,#contact{padding:3.5rem 1.5rem}
+  footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">Priscilla <span>Oyewole</span></a>
+  <ul class="nav-links">
+    <li><a href="#corporate">Corporate</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#documentary">Documentary</a></li>
+    <li><a href="#youtube">YouTube</a></li>
+    <li><a href="#shorts">Shorts</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:priscycreates@gmail.com">Hire Me</a>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-tag">Video Editor · Content Strategist · Lagos, NG</div>
+  <h1 class="hero-h1">Every frame<br>tells a <em>story.</em><br>I make it count.</h1>
+  <p class="hero-sub">From corporate campaigns to music videos and documentaries — I edit content that moves audiences and builds brands.</p>
+  <div class="hero-btns">
+    <a href="#corporate" class="btn-fill">View My Work</a>
+    <a href="mailto:priscycreates@gmail.com" class="btn-line">Get In Touch</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">4<span>+</span></div><div class="stat-label">Years Experience</div></div>
+  <div class="stat"><div class="stat-num">50<span>+</span></div><div class="stat-label">Projects Delivered</div></div>
+  <div class="stat"><div class="stat-num">5</div><div class="stat-label">Content Categories</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Stories to Tell</div></div>
+</div>
+
+<section class="cat-section" id="corporate">
+  <div class="section-header"><div><span class="section-tag">Category 01</span><h2 class="section-title">Corporate</h2></div></div>
+  <div class="grid-2">
+    <a class="vcard" href="https://youtu.be/RHHPfQBcry4" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/RHHPfQBcry4/maxresdefault.jpg" alt="Corporate Video 1"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Corporate · Brand Film</span><div class="vcard-title">Corporate Production 01</div></div>
+    </a>
+    <a class="vcard" href="https://youtu.be/4dXz4y4HjIA" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/4dXz4y4HjIA/maxresdefault.jpg" alt="Corporate Video 2"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Corporate · Campaign</span><div class="vcard-title">Corporate Production 02</div></div>
+    </a>
+  </div>
+</section>
+
+<section class="cat-section" id="music">
+  <div class="section-header"><div><span class="section-tag">Category 02</span><h2 class="section-title">Music Videos</h2></div></div>
+  <div class="grid-3">
+    <a class="vcard" href="https://youtu.be/smiDblqPlX0" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/smiDblqPlX0/maxresdefault.jpg" alt="Music Video 1"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Music Video</span><div class="vcard-title">Music Video 01</div></div>
+    </a>
+    <a class="vcard" href="https://youtu.be/XJImDLLoknE" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/XJImDLLoknE/maxresdefault.jpg" alt="Music Video 2"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Music Video</span><div class="vcard-title">Music Video 02</div></div>
+    </a>
+    <a class="vcard" href="https://youtu.be/a4vGaGqCXbo" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/a4vGaGqCXbo/maxresdefault.jpg" alt="Music Video 3"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Music Video</span><div class="vcard-title">Music Video 03</div></div>
+    </a>
+    <a class="vcard" href="https://youtu.be/rud7a4SU4aQ" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/rud7a4SU4aQ/maxresdefault.jpg" alt="Music Video 4"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Music Video</span><div class="vcard-title">Music Video 04</div></div>
+    </a>
+  </div>
+</section>
+
+<section class="cat-section" id="documentary">
+  <div class="section-header"><div><span class="section-tag">Category 03</span><h2 class="section-title">Documentary</h2></div></div>
+  <div class="grid-1">
+    <a class="vcard" href="https://youtu.be/auQowoYxpks" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-wide"><img src="https://img.youtube.com/vi/auQowoYxpks/maxresdefault.jpg" alt="Documentary" style="object-position:center top"><div class="play-btn"><div class="play-circle" style="width:72px;height:72px"><svg viewBox="0 0 24 24" style="width:24px;height:24px;margin-left:4px"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Documentary · Long Form</span><div class="vcard-title" style="font-size:1.4rem">Documentary Feature</div></div>
+    </a>
+  </div>
+</section>
+
+<section class="cat-section" id="youtube">
+  <div class="section-header"><div><span class="section-tag">Category 04</span><h2 class="section-title">YouTube Videos</h2></div></div>
+  <div class="grid-3">
+    <a class="vcard" href="https://youtu.be/oskHkWnFkHw" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/oskHkWnFkHw/maxresdefault.jpg" alt="YouTube 1"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">YouTube</span><div class="vcard-title">YouTube Video 01</div></div>
+    </a>
+    <a class="vcard" href="https://youtu.be/ECgeEEyjYnY" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/ECgeEEyjYnY/maxresdefault.jpg" alt="YouTube 2"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">YouTube</span><div class="vcard-title">YouTube Video 02</div></div>
+    </a>
+    <a class="vcard" href="https://youtu.be/2xTb7bV7OYM" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-16-9"><img src="https://img.youtube.com/vi/2xTb7bV7OYM/maxresdefault.jpg" alt="YouTube 3"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">YouTube</span><div class="vcard-title">YouTube Video 03</div></div>
+    </a>
+  </div>
+</section>
+
+<section class="cat-section" id="shorts">
+  <div class="section-header"><div><span class="section-tag">Category 05</span><h2 class="section-title">Shorts & Social</h2></div></div>
+  <div class="grid-3">
+    <a class="vcard" href="https://youtube.com/shorts/lGdfe-FhG20" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-9-16"><img src="https://img.youtube.com/vi/lGdfe-FhG20/maxresdefault.jpg" alt="Short 1"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Short · Social</span><div class="vcard-title">Short 01</div></div>
+    </a>
+    <a class="vcard" href="https://youtube.com/shorts/Qu6r7JOg5LI" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-9-16"><img src="https://img.youtube.com/vi/Qu6r7JOg5LI/maxresdefault.jpg" alt="Short 2"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Short · Social</span><div class="vcard-title">Short 02</div></div>
+    </a>
+    <a class="vcard" href="https://youtube.com/shorts/lNbaiMouVfA" target="_blank" rel="noopener">
+      <div class="vcard-thumb ratio-9-16"><img src="https://img.youtube.com/vi/lNbaiMouVfA/maxresdefault.jpg" alt="Short 3"><div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#18160F"/></svg></div></div></div>
+      <div class="vcard-body"><span class="vcard-label">Short · Social</span><div class="vcard-title">Short 03</div></div>
+    </a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header"><div><span class="section-tag">About</span><h2 class="section-title">Priscilla Oyewole</h2></div></div>
+  <div class="about-grid">
+    <div class="about-copy">
+      <p>I'm a video editor and content strategist based in Lagos, Nigeria. I work across corporate productions, music videos, documentaries, and social-first content — bringing both technical craft and creative strategy to every project.</p>
+      <p>My approach is simple: understand the story, understand the audience, and edit with intention. Whether it's a 30-second short or a full documentary, every cut should earn its place.</p>
+      <p>Available for freelance projects, retainers, and collaborations locally and internationally.</p>
+      <div style="margin-top:2rem"><a href="mailto:priscycreates@gmail.com" class="btn-fill">priscycreates@gmail.com</a></div>
+    </div>
+    <div>
+      <div class="tools-list">
+        <div class="tool-row"><span class="tool-cat">Editing</span><span class="tool-val">Premiere Pro, DaVinci Resolve, Final Cut Pro</span></div>
+        <div class="tool-row"><span class="tool-cat">Motion & VFX</span><span class="tool-val">After Effects, CapCut, Motion</span></div>
+        <div class="tool-row"><span class="tool-cat">Strategy</span><span class="tool-val">Content calendars, brand voice, audits</span></div>
+        <div class="tool-row"><span class="tool-cat">Platforms</span><span class="tool-val">YouTube, Instagram, TikTok, LinkedIn</span></div>
+        <div class="tool-row"><span class="tool-cat">Specialties</span><span class="tool-val">Music video, documentary, corporate, shorts</span></div>
+        <div class="tool-row"><span class="tool-cat">Based</span><span class="tool-val">Lagos, Nigeria · Remote available</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <h2 class="contact-big">Ready to create<br>something<br><a href="mailto:priscycreates@gmail.com">unforgettable?</a></h2>
+    <p class="contact-note">Open to corporate campaigns, music videos, documentaries, content strategy retainers, and social content. Response within 24 hours.</p>
+    <div class="socials">
+      <a href="mailto:priscycreates@gmail.com">Email</a>
+      <a href="https://www.youtube.com" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Priscilla Oyewole</span>
+  <span>Video Editor · Content Strategist · Lagos, NG</span>
+</footer>
+
+</body>
+</html>
